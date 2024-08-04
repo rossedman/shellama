@@ -2,6 +2,14 @@
 
 This is a simple utility that allows you to communicate with Ollama running locally in your shell. This can be used for quick iteration while programming or trouble shooting and is a small binary that does... very little! Here are some examples of what you can do with `shellama`
 
+### Prerequisites
+
+Before running `shellama` you need `ollama` [installed](https://ollama.com/) on your machine and running. The default model is also set to `llama3.1`, this needs to be downloaded if you don't plan to overwrite the model. If you want to use a different model ensure that it is pulled locally using the following command.
+
+```sh
+ollama pull llama3.1
+```
+
 ### Installing
 
 `shellama` can be installed through `homebrew` or through GitHub releases!
