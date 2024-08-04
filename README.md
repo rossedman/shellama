@@ -2,6 +2,15 @@
 
 This is a simple utility that allows you to communicate with Ollama running locally in your shell. This can be used for quick iteration while programming or trouble shooting and is a small binary that does... very little! Here are some examples of what you can do with `shellama`
 
+### Installing
+
+`shellama` can be installed through `homebrew` or through GitHub releases!
+
+```sh
+brew tap rossedman/tap
+brew install rossedman/tap/shellama
+```
+
 ### Using
 
 `shellama` is meant to be used as a simple shell utility that can speed up development cycles. I built this to prevent from having to look things up or even paste things into GUI forms for ChatGPT. Because this uses `ollama` it also runs everything locally allowing you lots of leverage over what gets run.
