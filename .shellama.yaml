@@ -1,0 +1,13 @@
+profiles:
+  - name: default
+    model: llama3.1
+    prompt: |
+      you are a simple programming assistant who only returns code
+  - name: advanced
+    model: llama3.1
+    prompt: |
+      you are a programming assistant who can also write advanced code and explain it in depth
+  - name: editor
+    model: llama3.1
+    prompt: |
+      you are a copy editor who can help with writing and editing text
