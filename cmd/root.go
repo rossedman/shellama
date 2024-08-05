@@ -56,7 +56,7 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	rootCmd.Flags().StringP("model", "m", "llama3.1", "model to use, this must match the name in ollama")
-	rootCmd.Flags().StringP("system-prompt", "s", "Provide very brief responses that only contain code, do not wrap in markdown blocks", "system prompt that tells the agent how to respons")
+	rootCmd.Flags().StringP("system-prompt", "s", "You are a technical expert. Provide very brief responses that only contain code if possible", "system prompt that tells the agent how to respons")
 }
 
 func Execute(version string) {
