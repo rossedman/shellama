@@ -28,11 +28,11 @@ var rootCmd = &cobra.Command{
 		messages := []api.Message{
 			api.Message{
 				Role:    "system",
-				Content: "Provide very brief responses that only contain code, do not wrap in markdown blocks",
+				Content: cmd.Flag("system-prompt").Value.String(),
 			},
 			api.Message{
 				Role:    "user",
-				Content: strings.Join(args, ""),
+				Content: strings.Join(args, " "),
 			},
 		}
 
@@ -55,7 +55,8 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.Flags().StringP("model", "m", "llama3.1", "model to use")
+	rootCmd.Flags().StringP("model", "m", "llama3.1", "model to use, this must match the name in ollama")
+	rootCmd.Flags().StringP("system-prompt", "s", "Provide very brief responses that only contain code, do not wrap in markdown blocks", "system prompt that tells the agent how to respons")
 }
 
 func Execute(version string) {
