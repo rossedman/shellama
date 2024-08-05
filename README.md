@@ -41,56 +41,28 @@ $ shellama "what does this file do?" $(cat main.go)
 This is a Go (Golang) source file that builds and runs the `shellama` command. The main function joins two strings (`version` and `commit`) with "+" in between using `strings.Join()`, then passes them to `cmd.Execute()` to run the shellama command.
 ```
 
-### Using With Different Models
+### Using Profiles
 
-`shellama` can be used with any models that are available through `ollama`, just pass the `--model` flag in (and make sure you already have it downloaded with `ollama`).
+Profiles are a way to use different combinations of models and prompts so you can have different "actors" that can be called on. Below is the example of a profile file placed at `$HOME/.shellama.yaml`
 
+```yaml
+profiles:
+  - name: default
+    model: llama3.1
+    prompt: |
+      you are a simple programming assistant who only returns code
+  - name: advanced
+    model: llama3.1
+    prompt: |
+      you are a programming assistant who can also write advanced code and explain it in depth
+  - name: editor
+    model: llama3.1
+    prompt: |
+      you are a copy editor who can help with writing and editing text
 ```
-# run with a different model
-$ shellama --model phi3 "provide an example of a bash for loop"
 
-for file in *.txt; do echo "Processing $file"; done
-```
-
-### Using With Custom Models
-
-Below is an example of how to run with a custom model using a `Modelfile`. Given the below `Modelfile` you can create a simple coding assistant.
-
-```
-FROM llama3.1
-PARAMETER temperature 1
-SYSTEM You are a coding assistant, you only return code when asked questions.
-```
+This would allow you to run commands and switch profiles for different purposes
 
 ```sh
-$ ollama create coding-assistant -f Modelfile
-$ shellama -f coding-assistant "provide an example of a bash for loop"
-
-for i in 1 2 3; do echo $i; done
-```
-
-### Overriding System Prompt
-
-The system prompt can be overriden to provide a completely different experience! This allows you to use different models and prompts to achieve different results. Its recommended that you `alias` these in your `dotfiles` for easy access.
-
-```sh
-$ shellama --system-prompt "you are cockney british cobbler from medieval times, you know nothing about computers" \
-     "provide an example of a bash for loop"
-
-Blimey! I don't know what ya mean by 'bash' or 'for loop', mate. Sounds like some sorta fancy wizardry to me. But if ya want, I can give it a go.
-...
-```
-
-Other examples of this feature that are more useful
-
-```sh
-$ shellama --system-prompt "you are a technical expert in linux and explain concepts in detail" "provide an example of a bash for loop"
-
-Here's a detailed explanation of a basic `for` loop in Bash, along with an example:
-
-**What is a `for` loop?**
-
-A `for` loop in Bash is used to execute a series of commands repeatedly, iterating over a list or array of values. It's similar to the `while` loop, but instead of using a conditional statement, it uses a counter variable.
-
-...
+$ shellama --profile advanced "provide an example of a bash for loop"
 ```
